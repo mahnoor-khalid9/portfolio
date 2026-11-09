@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#2a2421">
+<title>Mahnoor Khalid | PhD Student, LLMs for Robotics</title>
+<meta name="description" content="Mahnoor Khalid is an ECE PhD student at UMass Dartmouth working on large language models for robots and simulated agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@300..700&family=Gochi+Hand&family=JetBrains+Mono:wght@400;500;700&family=Noto+Nastaliq+Urdu:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  --desk: oklch(21% 0.009 55);
+  --desk-raised: oklch(26% 0.011 55);
+  --chalk: oklch(93% 0.012 82);
+  --chalk-muted: oklch(75% 0.014 78);
+  --chalk-faint: oklch(64% 0.012 74);
+  --chalk-line: oklch(93% 0.012 82 / 0.14);
+  --paper: oklch(93% 0.028 82);
+  --paper-light: oklch(96% 0.02 85);
+  --paper-grey: oklch(86% 0.008 90);
+  --paper-kraft: oklch(80% 0.042 68);
+  --ink: oklch(24% 0.02 55);
+  --ink-muted: oklch(38% 0.021 55);
+  --ink-faint: oklch(50% 0.019 58);
+  --rule: oklch(68% 0.075 248);
+  --grid: oklch(74% 0.026 244);
+  --accent: oklch(89% 0.147 95);
+  --accent-bright: oklch(93% 0.135 96);
+  --accent-deep: oklch(46% 0.095 95);
+  --brown: oklch(41% 0.075 55);
+  --brown-light: oklch(48% 0.08 56);
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-marker: "Gochi Hand", "Bradley Hand", cursive;
+  --font-urdu: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
+
+  --text-name: clamp(2.4rem, 1.5rem + 3.6vw, 4rem);
+  --text-hero: clamp(1.9rem, 1.25rem + 2.6vw, 3.1rem);
+  --text-section: clamp(1.75rem, 1.15rem + 2.5vw, 2.9rem);
+  --text-card: clamp(1.3rem, 1.1rem + 0.9vw, 1.7rem);
+  --text-lede: clamp(1.05rem, 0.98rem + 0.42vw, 1.3rem);
+  --text-body: clamp(0.975rem, 0.95rem + 0.12vw, 1.05rem);
+  --text-micro: 0.72rem;
+
+  --rule-pitch: 1.75rem;
+  --radius-sheet: 0.4rem;
+  --radius-tag: 0.3rem;
+  --shadow-rest: 0 1px 2px oklch(0% 0 0 / 0.3), 0 14px 32px -16px oklch(0% 0 0 / 0.55);
+  --shadow-lift: 0 2px 4px oklch(0% 0 0 / 0.32), 0 26px 50px -18px oklch(0% 0 0 / 0.6);
+  --ease-settle: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --shell: 72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 5rem); background-color: var(--desk); }
+body {
+  margin: 0;
+  background-color: var(--desk);
+  background-image: radial-gradient(130% 80% at 50% -10%, var(--desk-raised) 0%, transparent 62%);
+  background-attachment: fixed;
+  color: var(--chalk);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background-color: var(--desk); }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 600; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul, ol, dl, dd, dt { margin: 0; padding: 0; }
+li { list-style: none; }
+a { color: inherit; text-decoration-color: color-mix(in oklab, currentColor 40%, transparent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; transition: color 0.16s var(--ease-settle); }
+a:hover { color: var(--accent-bright); }
+img { max-width: 100%; height: auto; display: block; }
+:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; border-radius: 2px; }
+.shell { width: 100%; max-width: var(--shell); margin-inline: auto; padding-inline: 1.25rem; }
+@media (min-width: 40rem) { .shell { padding-inline: 2rem; } }
+
+.mono-label { font-family: var(--font-mono); font-size: var(--text-micro); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5; }
+.marker { font-family: var(--font-marker); font-weight: 400; letter-spacing: 0.01em; }
+.skip-link { position: absolute; top: 0.5rem; left: 0.5rem; z-index: 100; padding: 0.5rem 0.9rem; border-radius: var(--radius-tag); background-color: var(--accent-deep); color: var(--paper-light); text-decoration: none; transform: translateY(-250%); }
+.skip-link:focus-visible { transform: none; }
+
+/* Paper sheets */
+.paper { position: relative; border-radius: var(--radius-sheet); background-color: var(--paper); color: var(--ink); box-shadow: var(--shadow-rest); }
+.paper--light { background-color: var(--paper-light); }
+.paper--kraft { background-color: var(--paper-kraft); }
+.paper--ruled { background-image: repeating-linear-gradient(to bottom, transparent 0 calc(var(--rule-pitch) - 1px), color-mix(in oklab, var(--rule) 46%, transparent) calc(var(--rule-pitch) - 1px) var(--rule-pitch)); background-position: 0 0.5rem; }
+.paper--graph { background-image: repeating-linear-gradient(to right, color-mix(in oklab, var(--grid) 32%, transparent) 0 1px, transparent 1px 22px), repeating-linear-gradient(to bottom, color-mix(in oklab, var(--grid) 32%, transparent) 0 1px, transparent 1px 22px); }
+.tape { position: absolute; width: 4.5rem; height: 1.3rem; background-color: color-mix(in oklab, var(--paper-light) 55%, transparent); box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.18); pointer-events: none; }
+.tape--tl { top: -0.6rem; left: -0.9rem; rotate: -7deg; }
+.tape--tc { top: -0.65rem; left: 50%; translate: -50% 0; rotate: 2deg; }
+.tape--br { bottom: -0.6rem; right: -0.9rem; rotate: -5deg; }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag { display: inline-block; padding: 0.2rem 0.55rem; border-radius: var(--radius-tag); background-color: color-mix(in oklab, var(--accent) 45%, transparent); color: oklch(36% 0.075 95); font-family: var(--font-mono); font-size: var(--text-micro); line-height: 1.6; }
+
+.btn { display: inline-block; padding: 0.6rem 1.15rem; border-radius: var(--radius-tag); font-family: var(--font-mono); font-size: var(--text-micro); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background-color 0.16s var(--ease-settle), border-color 0.16s var(--ease-settle), color 0.16s var(--ease-settle); }
+.btn--solid { background-color: var(--accent); color: var(--ink); border: 1px solid transparent; }
+.btn--solid:hover { background-color: var(--accent-bright); color: var(--ink); }
+.btn--ghost { border: 1px solid var(--chalk-line); color: var(--chalk-muted); }
+.btn--ghost:hover { border-color: var(--accent-bright); color: var(--chalk); }
+
+/* Nav */
+.site-nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; border-bottom: 1px solid transparent; background-color: color-mix(in oklab, var(--desk) 82%, transparent); backdrop-filter: blur(10px); transition: border-color 0.2s var(--ease-settle), background-color 0.2s var(--ease-settle); }
+.site-nav[data-scrolled="true"] { border-bottom-color: var(--chalk-line); background-color: color-mix(in oklab, var(--desk) 94%, transparent); }
+.site-nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 5rem; }
+.site-nav__name { font-size: 1.3rem; text-decoration: none; color: var(--chalk); transition: opacity 0.22s var(--ease-settle), visibility 0.22s var(--ease-settle); }
+.site-nav__links { display: flex; gap: clamp(0.65rem, 2vw, 1.6rem); }
+.nav-link { position: relative; display: inline-block; padding-block: 0.4rem; color: var(--chalk-faint); text-decoration: none; }
+.nav-link::after { content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 1.5px; border-radius: 2px; background-color: var(--accent-bright); opacity: 0; transform: scaleX(0); transform-origin: left; transition: opacity 0.14s linear, transform 0.3s var(--ease-settle); }
+.nav-link:hover, .nav-link[aria-current] { color: var(--chalk); }
+.nav-link:hover::after, .nav-link[aria-current]::after { opacity: 1; transform: scaleX(1); }
+.site-nav[data-past-hero="false"] { background-color: var(--paper); backdrop-filter: none; }
+.site-nav[data-past-hero="false"] .site-nav__name { opacity: 0; visibility: hidden; }
+.site-nav[data-past-hero="false"] .nav-link { color: var(--ink-faint); }
+.site-nav[data-past-hero="false"] .nav-link:hover, .site-nav[data-past-hero="false"] .nav-link[aria-current] { color: var(--ink); }
+.site-nav[data-past-hero="false"] .nav-link::after { background-color: var(--accent-deep); }
+@media (max-width: 46rem) {
+  .site-nav__links li[data-optional] { display: none; }
+  .site-nav__inner { flex-wrap: wrap; row-gap: 0; padding-bottom: 0.5rem; }
+  .site-nav__links { flex-wrap: wrap; row-gap: 0; }
+}
+
+/* Hero on ruled paper */
+.hero { padding-block: clamp(1.75rem, 3vw, 2.75rem) clamp(2.5rem, 4vw, 3.5rem); background-color: var(--paper); background-image: repeating-linear-gradient(to bottom, transparent 0 calc(var(--rule-pitch) - 1px), color-mix(in oklab, var(--rule) 26%, transparent) calc(var(--rule-pitch) - 1px) var(--rule-pitch)); color: var(--ink); }
+.hero__grid { display: grid; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
+@media (min-width: 60rem) { .hero__grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); } }
+.hero__name { display: flex; flex-wrap: wrap; align-items: center; gap: 0 0.5em; font-size: var(--text-name); line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); }
+.hero__name-latin { white-space: nowrap; }
+.hero__name-urdu { font-family: var(--font-urdu); font-weight: 500; font-size: 0.82em; letter-spacing: 0; line-height: 1.9; color: oklch(30% 0.05 45); translate: 0 -0.12em; }
+.hero__role { margin-top: 0.9rem; color: var(--ink-muted); font-weight: 500; font-size: 0.78rem; }
+.hero__statement { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid color-mix(in oklab, var(--ink) 22%, transparent); color: var(--ink); font-family: var(--font-display); font-weight: 600; font-size: var(--text-hero); line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+.hero__statement em { font-family: var(--font-marker); font-style: normal; font-weight: 400; font-size: 1.12em; color: var(--brown); }
+.hero__lede { max-width: 56ch; margin-top: 1.1rem; color: var(--ink); font-weight: 500; font-size: var(--text-lede); line-height: 1.55; text-wrap: balance; }
+.hero__seeking { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; color: var(--ink); font-size: var(--text-lede); font-style: italic; font-weight: 500; }
+.seeking-icon { width: 1.05em; height: 1.05em; flex: none; color: var(--brown); }
+.hero__meta { display: grid; gap: 0.4rem; margin-top: 1.4rem; padding-top: 1.1rem; border-top: 1px solid color-mix(in oklab, var(--ink) 22%, transparent); color: var(--ink); font-weight: 500; }
+.hero__meta-key { margin-right: 0.3rem; color: var(--ink-muted); font-weight: 500; }
+.hero a { color: var(--ink); text-decoration-color: color-mix(in oklab, var(--accent-deep) 55%, transparent); }
+.hero a:hover { color: var(--accent-deep); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.4rem; }
+.hero .btn { background-color: var(--brown); border: 1px solid transparent; color: oklch(100% 0 0); font-weight: 700; }
+.hero .btn:hover { background-color: var(--brown-light); color: oklch(100% 0 0); }
+.hero .tape { background-color: color-mix(in oklab, var(--ink) 10%, transparent); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 8%, transparent); }
+
+.hero__collage { position: relative; display: grid; justify-items: start; }
+@media (min-width: 60rem) { .hero__collage { justify-items: center; } }
+.collage-item { margin: 0; padding: 0.6rem; max-width: 18rem; width: 100%; rotate: -1.8deg; background-color: var(--paper-light); }
+.photo-slot { display: grid; place-items: center; aspect-ratio: 3 / 4.4; border: 1.5px dashed color-mix(in oklab, var(--ink) 30%, transparent); border-radius: 0.2rem; background-color: color-mix(in oklab, var(--paper-kraft) 35%, transparent); color: var(--ink-faint); text-align: center; padding: 1rem; font-size: 1.25rem; line-height: 1.3; }
+.collage-item__caption { display: flex; align-items: center; justify-content: center; gap: 0.3rem; margin-top: 0.6rem; color: var(--ink-muted); font-size: 1.15rem; line-height: 1.2; text-align: center; }
+.pin-icon { width: 1.1em; height: 1.1em; flex: none; color: oklch(55% 0.17 28); }
+
+/* Sections */
+.section { padding-block: clamp(3.5rem, 7vw, 6rem); border-top: 1px solid var(--chalk-line); }
+.hero + .section { border-top: 0; }
+.section-head { max-width: 44ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.section-head--wide { max-width: none; }
+.section-head__heading { font-size: var(--text-section); line-height: 1.1; letter-spacing: -0.015em; }
+.section-head__note { margin-top: 1rem; color: var(--chalk-faint); }
+.section-head__note.marker { font-size: 1.3rem; color: var(--accent-bright); }
+.section--wide .shell { max-width: 82rem; }
+
+/* Timeline */
+.track { display: grid; border-left: 1px solid var(--chalk-line); }
+.track__item { position: relative; display: grid; gap: 0.35rem 2rem; padding: 1.75rem 0 1.75rem 1.75rem; }
+.track__item::before { content: ""; position: absolute; top: 2.1rem; left: -4px; width: 7px; height: 7px; border-radius: 50%; background-color: var(--accent); }
+@media (min-width: 44rem) { .track__item { grid-template-columns: 9rem minmax(0, 1fr); } }
+.track__when { color: var(--chalk-faint); padding-top: 0.3rem; }
+.track__role { font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; line-height: 1.3; }
+.track__role--stacked { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--chalk-line); }
+.track__org { margin-top: 0.35rem; color: var(--accent-bright); font-size: 0.95rem; }
+.track__meta { margin-top: 0.3rem; color: var(--chalk-faint); font-size: 0.9rem; }
+.track__note { margin-top: 0.5rem; color: var(--chalk-muted); max-width: 64ch; }
+
+/* Project cards */
+.work-stack { display: grid; gap: clamp(2rem, 4vw, 3.5rem); }
+.work-card { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); padding: clamp(1.5rem, 3vw, 2.5rem); transition: box-shadow 0.3s var(--ease-settle), translate 0.3s var(--ease-settle); }
+.work-card:hover { box-shadow: var(--shadow-lift); translate: 0 -2px; }
+@media (min-width: 56rem) { .work-card { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: start; } }
+.work-card__kicker { color: var(--accent-deep); margin-bottom: 0.5rem; }
+.work-card__title { font-size: var(--text-card); line-height: 1.15; }
+.work-card__summary { margin-top: 0.75rem; color: var(--ink-muted); max-width: 54ch; }
+.work-card .tag-row { margin-top: 1.5rem; }
+.field-grid { display: grid; gap: 1rem 1.75rem; align-content: start; }
+.field dt { color: var(--accent-deep); margin-bottom: 0.15rem; }
+.field dd { color: var(--ink-muted); font-size: 0.95rem; }
+.work-card.paper--kraft .work-card__kicker, .work-card.paper--kraft .field dt { color: var(--brown); }
+
+/* Publications */
+.pub-list { display: grid; }
+.pub { display: grid; gap: 0.4rem 2rem; padding-block: 1.6rem; border-top: 1px solid var(--chalk-line); }
+.pub:last-child { border-bottom: 1px solid var(--chalk-line); }
+@media (min-width: 44rem) { .pub { grid-template-columns: 9.5rem minmax(0, 1fr); } }
+.pub__venue { display: flex; flex-wrap: wrap; gap: 0 0.5rem; padding-top: 0.35rem; color: var(--chalk-faint); }
+@media (min-width: 44rem) { .pub__venue { display: block; } }
+.pub__conf { display: block; color: var(--accent-bright); }
+.pub__place, .pub__year { display: block; }
+.pub__title { font-family: var(--font-sans); font-size: 1rem; line-height: 1.35; font-weight: 500; text-wrap: pretty; }
+.pub__authors { margin-top: 0.4rem; color: var(--chalk-muted); font-size: 0.95rem; }
+.pub__authors strong { color: var(--chalk); font-weight: 600; }
+.pub__links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.7rem; }
+.pub__links a { font-family: var(--font-mono); font-size: var(--text-micro); letter-spacing: 0.06em; text-transform: uppercase; color: var(--chalk-faint); text-decoration: none; border-bottom: 1px solid color-mix(in oklab, var(--accent) 45%, transparent); padding-bottom: 1px; }
+.pub__links a:hover { color: var(--accent-bright); border-bottom-color: var(--accent-bright); }
+
+/* Toolbox */
+.stack-grid { display: grid; gap: 1.5rem; }
+@media (min-width: 40rem) { .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 60rem) { .stack-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stack-group { padding: 1.4rem 1.4rem 1.6rem; }
+.stack-group:nth-child(odd) { rotate: -0.6deg; }
+.stack-group:nth-child(even) { rotate: 0.7deg; }
+.stack-group__label { font-size: 1.15rem; margin-bottom: 0.6rem; line-height: 1.2; }
+.stack-group li { color: var(--ink-muted); line-height: var(--rule-pitch); }
+
+/* Detail lists */
+.two-col { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 56rem) { .two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.two-col h3 { font-size: var(--text-card); margin-bottom: 1.2rem; }
+.detail-list { display: grid; gap: 1rem; }
+.detail-list li { position: relative; padding-left: 1.2rem; color: var(--chalk-muted); }
+.detail-list li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background-color: var(--accent); }
+.detail-list strong { display: block; color: var(--chalk); font-weight: 600; }
+
+/* Contact */
+.contact { display: grid; gap: 2rem; padding: clamp(1.75rem, 4vw, 3rem); }
+@media (min-width: 56rem) { .contact { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: end; } }
+.contact h2 { font-size: var(--text-section); line-height: 1.1; letter-spacing: -0.015em; }
+.contact p { margin-top: 1rem; color: var(--ink-muted); max-width: 52ch; }
+.contact .detail-list li { color: var(--ink-muted); }
+.contact .detail-list li::before { background-color: var(--brown); }
+.contact__links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+.contact .btn { background-color: var(--brown); color: oklch(100% 0 0); font-weight: 700; }
+.contact .btn:hover { background-color: var(--brown-light); color: oklch(100% 0 0); }
+
+.site-footer { padding-block: 2.5rem 3rem; color: var(--chalk-faint); font-size: 0.9rem; }
+.site-footer .shell { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#education">Skip to content</a>
+
+<nav class="site-nav" data-past-hero="false" aria-label="Main">
+  <div class="shell site-nav__inner">
+    <a class="site-nav__name marker" href="#top">Mahnoor Khalid</a>
+    <ul class="site-nav__links">
+      <li><a class="nav-link mono-label" href="#education">Education</a></li>
+      <li><a class="nav-link mono-label" href="#experience">Experience</a></li>
+      <li data-optional><a class="nav-link mono-label" href="#projects">Projects</a></li>
+      <li><a class="nav-link mono-label" href="#publications">Publications</a></li>
+      <li><a class="nav-link mono-label" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="shell hero__grid">
+    <div>
+      <h1 class="hero__name">
+        <span class="hero__name-latin">Mahnoor Khalid</span>
+        <span class="hero__name-urdu" lang="ur" dir="rtl">ماہ نور خالد</span>
+      </h1>
+      <p class="hero__role mono-label">PhD student, Electrical &amp; Computer Engineering, UMass Dartmouth</p>
+
+      <p class="hero__statement">I teach language models to act in the physical world, and check when they can be <em>trusted</em></p>
+
+      <p class="hero__lede">I work where large language models meet robots and simulated agents. I fine-tune and evaluate open-weight models, put them on real hardware like a Clearpath Husky and a 6-DOF arm, and validate what they do against real-world data rather than demos.</p>
+
+      <p class="hero__seeking">
+        <svg class="seeking-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        Open to research internships in robot learning and LLMs
+      </p>
+
+      <dl class="hero__meta">
+        <div><dt class="hero__meta-key mono-label" style="display:inline">Research area:</dt> <dd style="display:inline">LLMs for robotics, embodied AI and healthcare</dd></div>
+        <div><dt class="hero__meta-key mono-label" style="display:inline">Before the PhD:</dt> <dd style="display:inline">3+ years as a Data &amp; AI Engineer</dd></div>
+        <div><dt class="hero__meta-key mono-label" style="display:inline">Email:</dt> <dd style="display:inline"><a href="mailto:you@example.com">[your email]</a></dd></div>
+      </dl>
+
+      <div class="hero__actions">
+        <a class="btn" href="#">Curriculum vitae</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="hero__collage">
+      <figure class="collage-item paper">
+        <span class="tape tape--tl" aria-hidden="true"></span>
+        <div class="photo-slot marker">Your photo here</div>
+        <figcaption class="collage-item__caption marker">
+          <svg class="pin-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          Santa Fe, New Mexico
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section" id="education">
+    <div class="shell">
+      <div class="section-head"><h2 class="section-head__heading">Education</h2></div>
+      <ol class="track">
+        <li class="track__item">
+          <p class="track__when mono-label">[Fall 2026] — now</p>
+          <div>
+            <h3 class="track__role">PhD, Electrical &amp; Computer Engineering</h3>
+            <p class="track__org">University of Massachusetts Dartmouth</p>
+            <h3 class="track__role track__role--stacked">MS, Data Science</h3>
+            <p class="track__org">University of Massachusetts Dartmouth</p>
+            <p class="track__meta">GPA 4.0 · Thesis on LLM-enabled agent-based modeling</p>
+          </div>
+        </li>
+        <li class="track__item">
+          <p class="track__when mono-label">[Start] — [End]</p>
+          <div>
+            <h3 class="track__role">BSc, Electrical Engineering</h3>
+            <p class="track__org">[University], Pakistan</p>
+            <p class="track__meta">First-generation university student</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="shell">
+      <div class="section-head"><h2 class="section-head__heading">Work experience</h2></div>
+      <ol class="track">
+        <li class="track__item">
+          <p class="track__when mono-label">Spring 2025 — now</p>
+          <div>
+            <h3 class="track__role">Graduate Researcher</h3>
+            <p class="track__org">[Lab name] · UMass Dartmouth</p>
+            <p class="track__note">Building LLM-driven agents in simulation and on robots, and measuring how they behave across models, prompts and repeated runs on HPC.</p>
+          </div>
+        </li>
+        <li class="track__item">
+          <p class="track__when mono-label">Aug 2021 — Dec 2024</p>
+          <div>
+            <h3 class="track__role">Data &amp; AI Engineer</h3>
+            <p class="track__org">[Company] · [City]</p>
+            <p class="track__note">[One line on what you built and shipped, ideally with a number: data scale, users, latency, cost saved.]</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="shell">
+      <div class="section-head">
+        <h2 class="section-head__heading">Selected projects</h2>
+        <p class="section-head__note marker">One thesis, two robots, many runs.</p>
+      </div>
+      <div class="work-stack">
+        <article class="work-card paper paper--ruled">
+          <span class="tape tape--tl" aria-hidden="true"></span>
+          <div>
+            <p class="work-card__kicker mono-label">Master’s thesis · CSSSA 2026</p>
+            <h3 class="work-card__title">LLM activists in an agent-based model of nonviolent resistance</h3>
+            <p class="work-card__summary">A hybrid simulation where LLM-guided activists plan campaigns against rule-based police, citizens and institutional pillars. I compared three open-weight 8B models under zero-shot and chain-of-thought prompting, 100 runs each, and validated outcomes against NAVCO historical data.</p>
+            <div class="tag-row"><span class="tag">Mesa</span><span class="tag">vLLM</span><span class="tag">Llama 3.1</span><span class="tag">Qwen3</span><span class="tag">statsmodels</span></div>
+          </div>
+          <dl class="field-grid">
+            <div class="field"><dt class="mono-label">Finding</dt><dd>Chain-of-thought prompting recovers the tactical diversity that zero-shot prompting suppresses.</dd></div>
+            <div class="field"><dt class="mono-label">Finding</dt><dd>Campaign outcomes follow an “early cascade or bust” pattern.</dd></div>
+            <div class="field"><dt class="mono-label">Scale</dt><dd>Six model configurations, 600 simulated campaigns on Unity HPC.</dd></div>
+          </dl>
+        </article>
+
+        <article class="work-card paper paper--graph">
+          <span class="tape tape--tc" aria-hidden="true"></span>
+          <div>
+            <p class="work-card__kicker mono-label">Robotics · Clearpath Husky</p>
+            <h3 class="work-card__title">Vision-language perception for a ground robot</h3>
+            <p class="work-card__summary">A ROS 2 package that streams RealSense color and aligned depth into a vision-language model, so the robot can describe its scene and use that description for navigation.</p>
+            <div class="tag-row"><span class="tag">ROS 2 Jazzy</span><span class="tag">RealSense</span><span class="tag">PyTorch</span><span class="tag">VLM</span></div>
+          </div>
+          <dl class="field-grid">
+            <div class="field"><dt class="mono-label">Platform</dt><dd>Clearpath Husky with an Intel RealSense depth camera.</dd></div>
+            <div class="field"><dt class="mono-label">Status</dt><dd>[Add what works today and a link to the code.]</dd></div>
+          </dl>
+        </article>
+
+        <article class="work-card paper paper--kraft">
+          <span class="tape tape--br" aria-hidden="true"></span>
+          <div>
+            <p class="work-card__kicker mono-label">Robotics · Epson VT6L</p>
+            <h3 class="work-card__title">An open-vocabulary agent for a 6-DOF arm</h3>
+            <p class="work-card__summary">An arm agent that finds objects with YOLO and lets a vision-language model name them, with no hand-coded classes or colors. The simulated arm matches the real VT6L so behavior carries over.</p>
+            <div class="tag-row"><span class="tag">YOLO</span><span class="tag">VLM</span><span class="tag">Simulation</span></div>
+          </div>
+          <dl class="field-grid">
+            <div class="field"><dt class="mono-label">Status</dt><dd>In progress.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--wide" id="publications">
+    <div class="shell">
+      <div class="section-head section-head--wide"><h2 class="section-head__heading">Publications</h2></div>
+      <ol class="pub-list">
+        <li class="pub">
+          <p class="pub__venue mono-label"><span class="pub__conf">CSSSA</span><span class="pub__place">Santa Fe, NM</span><span class="pub__year">2026</span></p>
+          <div>
+            <h3 class="pub__title">[Paper title: hybrid LLM agent-based model of nonviolent resistance]</h3>
+            <p class="pub__authors"><strong>Mahnoor Khalid</strong>, Hang Dinh, [other co-authors]</p>
+            <p class="pub__links"><a href="#">PDF</a><a href="#">Code</a><a href="#">Poster</a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <p class="pub__venue mono-label"><span class="pub__conf">IEEE ICDMW</span><span class="pub__place">[City]</span><span class="pub__year">2025</span></p>
+          <div>
+            <h3 class="pub__title">[Paper title: hierarchical medical text classification with Bio_ClinicalBERT]</h3>
+            <p class="pub__authors"><strong>Mahnoor Khalid</strong>, [co-authors]</p>
+            <p class="pub__links"><a href="#">PDF</a><a href="#">Code</a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <p class="pub__venue mono-label"><span class="pub__conf">MS Thesis</span><span class="pub__place">UMass Dartmouth</span><span class="pub__year">2026</span></p>
+          <div>
+            <h3 class="pub__title">A Hybrid Generative Agent-Based Model of Nonviolent Resistance with Large Language Model-Enabled Activist Agents</h3>
+            <p class="pub__authors"><strong>Mahnoor Khalid</strong></p>
+            <p class="pub__links"><a href="#">PDF</a></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="toolbox">
+    <div class="shell">
+      <div class="section-head"><h2 class="section-head__heading">The toolbox, day to day</h2></div>
+      <div class="stack-grid">
+        <div class="stack-group paper paper--ruled">
+          <h3 class="stack-group__label marker">Models &amp; training</h3>
+          <ul><li>PyTorch</li><li>Hugging Face Transformers</li><li>vLLM</li><li>Open-weight LLMs</li><li>Vision-language models</li></ul>
+        </div>
+        <div class="stack-group paper paper--graph">
+          <h3 class="stack-group__label marker">Robotics</h3>
+          <ul><li>ROS 2</li><li>Gazebo</li><li>RViz2</li><li>Intel RealSense</li><li>YOLO</li></ul>
+        </div>
+        <div class="stack-group paper paper--light">
+          <h3 class="stack-group__label marker">Modeling &amp; stats</h3>
+          <ul><li>Mesa</li><li>statsmodels</li><li>scikit-learn</li><li>pandas</li><li>matplotlib</li></ul>
+        </div>
+        <div class="stack-group paper paper--kraft">
+          <h3 class="stack-group__label marker">Everything else</h3>
+          <ul><li>Python</li><li>SLURM &amp; HPC</li><li>LaTeX</li><li>Conda</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="service">
+    <div class="shell two-col">
+      <div>
+        <h3>Teaching &amp; mentoring</h3>
+        <ul class="detail-list">
+          <li><strong>Section Leader, Probability for AI</strong>Stanford Code in Place · Fall 2026</li>
+          <li><strong>Peer Mentor</strong>[PSA, full name] · UMass Dartmouth</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Awards &amp; honours</h3>
+        <ul class="detail-list">
+          <li><strong>[Award name]</strong>[Awarding body] · [Year]</li>
+          <li><strong>[Award name]</strong>[Awarding body] · [Year]</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="shell">
+      <div class="contact paper paper--ruled">
+        <span class="tape tape--tl" aria-hidden="true"></span>
+        <div>
+          <p class="work-card__kicker mono-label">Get in touch</p>
+          <h2>Let’s talk robots and language models</h2>
+          <p>If you work on robot learning, LLM post-training or AI for healthcare, I would be glad to hear from you.</p>
+          <div class="contact__links">
+            <a class="btn" href="mailto:you@example.com">Email</a>
+            <a class="btn" href="#">Google Scholar</a>
+            <a class="btn" href="#">LinkedIn</a>
+            <a class="btn" href="#">GitHub</a>
+          </div>
+        </div>
+        <ul class="detail-list">
+          <li>Open to research internships</li>
+          <li>Happy to collaborate on LLM agents and embodied AI</li>
+          <li>Always glad to get feedback on my papers</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <span>© 2026 Mahnoor Khalid</span>
+    <a href="mailto:you@example.com">[your email]</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var nav = document.querySelector('.site-nav');
+  var hero = document.querySelector('.hero');
+  function update() {
+    var past = hero.getBoundingClientRect().bottom <= nav.offsetHeight + 4;
+    nav.setAttribute('data-past-hero', past ? 'true' : 'false');
+    nav.setAttribute('data-scrolled', window.scrollY > 8 ? 'true' : 'false');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {
+          if (a.getAttribute('href') === '#' + e.target.id) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function (s) { if (s) io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
